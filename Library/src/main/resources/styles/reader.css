@@ -1,0 +1,24 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+
+
+VBox
+{
+    -fx-padding: 24;
+    -fx-spacing: 10;
+    -fx-background-color: lightblue;
+    -fx-alignment: CENTER;
+}
+
+HBox
+{
+    -fx-spacing: 150;
+}
+.field
+{
+    -fx-pref-width: 150;
+}
+
+
