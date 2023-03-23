@@ -15,61 +15,57 @@
       <HBox prefHeight="35.0" prefWidth="600.0">
          <children>
             <Label styleClass="field" text="Mã Sách" />
-            <TextField disable="true" styleClass="input" text="SV00001" />
+            <TextField disable="true" styleClass="input" text="SA00001" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="28.0" prefHeight="35.0" prefWidth="600.0">
          <children>
             <Label styleClass="field" text="Tên Sách" />
-            <TextField disable="true" styleClass="input" text="Nguyễn Anh Quốc" />
+            <TextField disable="true" styleClass="input" text="Kiểm Thử Phần Mềm" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="28.0" prefHeight="35.0" prefWidth="600.0">
          <children>
-            <Label styleClass="field" text="Giới Tính" />
-            <TextField disable="true" styleClass="input" text="NAM" />
+            <Label styleClass="field" text="Tác Giả" />
+            <TextField disable="true" styleClass="input" text="Dương Hữu Thành" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="63.0" prefHeight="35.0" prefWidth="600.0">
          <children>
-            <Label styleClass="field" text="Ngày Sinh" />
-            <TextField disable="true" styleClass="input" text="24-12-2002" />
+            <Label styleClass="field" text="Mô Tả Sách" />
+            <TextField disable="true" styleClass="input" text="Tổng quan về công việc kiểm thử cho kiểm thử viên" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="26.0" prefHeight="35.0" prefWidth="600.0">
          <children>
-            <Label styleClass="field" text="Đối Tượng" />
-            <TextField disable="true" styleClass="input" text="STUDENT" />
+            <Label styleClass="field" text="Năm Xuất Bản" />
+            <TextField disable="true" styleClass="input" text="2014" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="61.0" prefHeight="35.0" prefWidth="600.0">
          <children>
-            <Label styleClass="field" text="Bộ Phận" />
-            <TextField disable="true" styleClass="input" text="KHOA CÔNG NGHỆ THÔNG TIN" />
+            <Label styleClass="field" text="Nơi Xuất Bản" />
+            <TextField disable="true" styleClass="input" text="OU" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="96.0" prefHeight="35.0" prefWidth="600.0">
          <children>
-            <Label styleClass="field" text="Email" />
-            <TextField styleClass="input" />
+            <Label styleClass="field" text="Danh Mục" />
+            <TextField styleClass="input" text="Tài Liệu Học Tập" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="132.0" prefHeight="35.0" prefWidth="600.0">
          <children>
-            <Label styleClass="field" text="Địa Chỉ" />
-            <TextField styleClass="input" />
+            <Label styleClass="field" text="Vị Trí Sách" />
+            <TextField styleClass="input" text="Kệ 3 Lầu 4" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="237.0" prefHeight="35.0" prefWidth="600.0">
          <children>
-            <Label styleClass="field" text="Số Điện Thoại" />
-            <TextField styleClass="input" />
-         </children>
-      </HBox>
-      <HBox layoutX="10.0" layoutY="272.0" prefHeight="35.0" prefWidth="600.0">
-         <children>
             <Button mnemonicParsing="false" text="Lưu Thông Tin" />
             <Button mnemonicParsing="false" text="Thêm" />
+            <Button mnemonicParsing="false" text="Xóa" />
+            <Button mnemonicParsing="false" text="Tra Cứu" />
          </children>
       </HBox>
       <TableView prefHeight="200.0" prefWidth="200.0" />

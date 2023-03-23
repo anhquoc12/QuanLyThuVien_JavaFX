@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="696.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="QUẢN LÝ ĐỘC GIẢ" />
@@ -71,6 +70,13 @@
          <children>
             <Button mnemonicParsing="false" text="Lưu Thông Tin" />
             <Button mnemonicParsing="false" text="Thêm" />
+            <Button mnemonicParsing="false" text="Xóa" />
+         </children>
+      </HBox>
+      <HBox layoutX="34.0" layoutY="451.0" prefHeight="35.0" prefWidth="600.0">
+         <children>
+            <Button mnemonicParsing="false" text="Tìm Kiếm" />
+            <TextField prefHeight="23.0" prefWidth="462.0" />
          </children>
       </HBox>
       <TableView prefHeight="200.0" prefWidth="200.0" />
