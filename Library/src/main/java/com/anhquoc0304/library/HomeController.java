@@ -11,6 +11,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 
 /**
  * FXML Controller class
@@ -51,5 +52,9 @@ public class HomeController implements Initializable {
     @FXML
     public void ExitClick(ActionEvent event) throws IOException {
         Platform.exit();
+    }
+
+    private Parent LoadFXML(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
