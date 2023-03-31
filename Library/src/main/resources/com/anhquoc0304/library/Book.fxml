@@ -5,67 +5,69 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="736.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.anhquoc0304.library.BookController">
+<VBox id="rdAdd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="736.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.anhquoc0304.library.BookController">
    <children>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="QUẢN LÝ SÁCH" />
       <HBox prefHeight="35.0" prefWidth="600.0">
          <children>
             <Label styleClass="field" text="Mã Sách" />
-            <TextField disable="true" styleClass="input" text="SA00001" />
+            <TextField fx:id="txtID" disable="true" styleClass="input" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="28.0" prefHeight="35.0" prefWidth="600.0">
          <children>
             <Label styleClass="field" text="Tên Sách" />
-            <TextField styleClass="input" text="Kiểm Thử Phần Mềm" />
+            <TextField fx:id="txtName" promptText="Nhập tên sách" styleClass="input" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="28.0" prefHeight="35.0" prefWidth="600.0">
          <children>
             <Label styleClass="field" text="Tác Giả" />
-            <TextField styleClass="input" text="Dương Hữu Thành" />
+            <TextField fx:id="txtTacGia" promptText="Nhập tên tác giả" styleClass="input" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="63.0" prefHeight="35.0" prefWidth="600.0">
          <children>
             <Label styleClass="field" text="Mô Tả Sách" />
-            <TextField styleClass="input" text="Tổng quan về công việc kiểm thử cho kiểm thử viên" />
+            <TextField fx:id="txtDescription" promptText="Nhập phần mô tả" styleClass="input" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="26.0" prefHeight="35.0" prefWidth="600.0">
          <children>
             <Label styleClass="field" text="Năm Xuất Bản" />
-            <TextField styleClass="input" text="2014" />
+            <TextField fx:id="txtNamXB" promptText="Nhập năm xuất bản" styleClass="input" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="61.0" prefHeight="35.0" prefWidth="600.0">
          <children>
             <Label styleClass="field" text="Nơi Xuất Bản" />
-            <TextField disable="true" styleClass="input" text="OU" />
+            <TextField fx:id="txtNoiXB" disable="true" promptText="Nhập nơi xuất bản" styleClass="input" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="96.0" prefHeight="35.0" prefWidth="600.0">
          <children>
             <Label styleClass="field" text="Danh Mục" />
-            <TextField styleClass="input" text="Tài Liệu Học Tập" />
+            <TextField fx:id="txtTheLoai" promptText="nhập tên danh mục" styleClass="input" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="132.0" prefHeight="35.0" prefWidth="600.0">
          <children>
             <Label styleClass="field" text="Vị Trí Sách" />
-            <TextField styleClass="input" text="Kệ 3 Lầu 4" />
+            <TextField fx:id="txtPosition" promptText="nhập vị trí sách trong thư viện" styleClass="input" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="237.0" prefHeight="35.0" prefWidth="600.0">
          <children>
             <Button mnemonicParsing="false" text="Lưu Thông Tin" />
-            <Button mnemonicParsing="false" text="Thêm" />
-            <Button mnemonicParsing="false" text="Xóa" />
-            <Button mnemonicParsing="false" text="Tra Cứu" />
+            <ToggleButton fx:id="tgAdd" mnemonicParsing="false" text="Thêm" />
+            <ToggleButton fx:id="tgEdit" mnemonicParsing="false" text="Sửa" />
+            <ToggleButton fx:id="tgDelete" mnemonicParsing="false" text="Xóa" />
+            <Button mnemonicParsing="false" onAction="#SearchCLick" text="Tra Cứu" />
          </children>
       </HBox>
       <TableView fx:id="tbBook" onMouseClicked="#RowCLick" prefHeight="227.0" prefWidth="884.0" />

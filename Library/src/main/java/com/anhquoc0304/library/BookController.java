@@ -14,14 +14,25 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pojo.Sach;
 import Services.SachServices;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -32,12 +43,38 @@ public class BookController implements Initializable {
 
     @FXML
     private TableView<Sach> tbBook;
+    @FXML
+    private ToggleButton tgAdd;
+    @FXML
+    private ToggleButton tgEdit;
+    @FXML
+    private ToggleButton tgDelete;
+    @FXML
+    private TextField txtID;
+    @FXML
+    private TextField txtName;
+    @FXML
+    private TextField txtTacGia;
+    @FXML
+    private TextField txtTheLoai;
+    @FXML
+    private TextField txtNamXB;
+    @FXML
+    private TextField txtNoiXB;
+    @FXML
+    private TextField txtDescription;
+    @FXML
+    private TextField txtPosition;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        ToggleGroup groupBook = new ToggleGroup();
+        tgAdd.setToggleGroup(groupBook);
+        tgDelete.setToggleGroup(groupBook);
+        tgEdit.setToggleGroup(groupBook);
         // TODO
         LoadTableView();
         try {
@@ -48,22 +85,32 @@ public class BookController implements Initializable {
     }
 
     @FXML
-    public void RowCLick(ActionEvent event) {
+    public void RowCLick(MouseEvent event) {
 
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("Are you sure?");
-        alert.setContentText("Do you really want to perform this action?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK) {
-            System.out.println("User clicked OK button");
-            // Thực hiện hành động khi người dùng nhấp vào nút OK
-        } else {
-            System.out.println("User clicked Cancel button");
-            // Không thực hiện hành động nào khi người dùng nhấp vào nút Hủy
+        TableView<Sach> table = (TableView<Sach>) event.getSource();
+        Sach s = table.getSelectionModel().getSelectedItem();
+//        
+        if (s != null) 
+        {
+            txtID.setText(s.getMaSach());
+            txtName.setText(s.getTenSach());
+            txtTacGia.setText(s.getTacGia());
+            txtTheLoai.setText(s.getTheLoai());
+            txtNamXB.setText(String.valueOf(s.getNamXB()));
+            txtDescription.setText(s.getMotaSach());
+            txtPosition.setText(s.getViTri());
+            txtNoiXB.setText(s.getNoiXB());
         }
-
+    }
+    
+    @FXML void SearchCLick(ActionEvent event) throws IOException
+    {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Search.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void LoadTableView() {
@@ -97,7 +144,5 @@ public class BookController implements Initializable {
 
     private void LoadDataView(TableView table) throws SQLException {
         table.setItems(FXCollections.observableArrayList(new SachServices().SachList()));
-//        this.tbBook.setItems(FXCollections.observableList(new SachServices().SachList())));
-//        System.out.println(new SachServices().SachList()));
     }
 }

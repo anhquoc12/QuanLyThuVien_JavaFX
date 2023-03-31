@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Group?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -10,30 +8,27 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="701.0" prefWidth="920.0" stylesheets="@../../../styles/base.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="com.anhquoc0304.library.SearchController">
+<AnchorPane id="AnchorPane" prefHeight="701.0" prefWidth="914.0" stylesheets="@../../../styles/base.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.anhquoc0304.library.SearchController">
    <children>
       <Text layoutX="151.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="TRA CỨU THÔNG TIN" textAlignment="CENTER" wrappingWidth="566.9366760253906" />
       <Group layoutX="21.0" layoutY="151.0">
          <children>
-            <AnchorPane prefHeight="110.0" prefWidth="477.0">
+            <AnchorPane prefHeight="110.0" prefWidth="904.0">
                <children>
-                  <TextField layoutX="14.0" layoutY="63.0" prefHeight="23.0" prefWidth="214.0" />
-                  <HBox layoutX="14.0" layoutY="14.0" prefHeight="38.0" prefWidth="463.0" spacing="50.0">
+                  <TextField fx:id="txtSearch" layoutX="14.0" layoutY="63.0" prefHeight="23.0" prefWidth="846.0" />
+                  <HBox layoutX="7.0" layoutY="14.0" prefHeight="38.0" prefWidth="870.0">
                      <children>
-                        <RadioButton mnemonicParsing="false" selected="true" text="Tên Sách" />
-                        <RadioButton mnemonicParsing="false" text="Tên Tác Giả" />
-                        <RadioButton mnemonicParsing="false" text="Năm XB" />
+                        <RadioButton fx:id="rdSach" mnemonicParsing="false" prefHeight="16.0" prefWidth="234.0" selected="true" text="Tên Sách" />
+                        <RadioButton fx:id="rdTG" mnemonicParsing="false" prefHeight="16.0" prefWidth="246.0" text="Tên Tác Giả" />
+                        <RadioButton fx:id="rdNam" mnemonicParsing="false" prefHeight="16.0" prefWidth="298.0" text="Năm XB" />
+                        <RadioButton fx:id="rdDanhMuc" mnemonicParsing="false" prefHeight="16.0" prefWidth="275.0" text="Danh Mục" />
                      </children>
                   </HBox>
                </children>
             </AnchorPane>
          </children>
       </Group>
-      <TableView layoutX="21.0" layoutY="318.0" prefHeight="350.0" prefWidth="854.0" />
+      <TableView fx:id="tbBook" layoutX="21.0" layoutY="318.0" prefHeight="363.0" prefWidth="890.0" />
       <Text layoutX="21.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tìm Kiếm Sách" />
-      <RadioButton layoutX="540.0" layoutY="162.0" mnemonicParsing="false" text="Danh Mục" />
-      <ComboBox disable="true" layoutX="694.0" layoutY="163.0" prefHeight="23.0" prefWidth="182.0" />
-      <Button layoutX="17.0" layoutY="284.0" mnemonicParsing="false" prefWidth="86.0" text="Tìm Kiếm" />
    </children>
 </AnchorPane>
