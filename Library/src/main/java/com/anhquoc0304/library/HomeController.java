@@ -59,15 +59,15 @@ public class HomeController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    public void Click(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Book.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-    }
+//    @FXML
+//    public void BookClick(ActionEvent event) throws IOException {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("Book.fxml"));
+//        Parent root = loader.load();
+//        Scene scene = new Scene(root);
+//        Stage stage = new Stage();
+//        stage.setScene(scene);
+//        stage.show();
+//    }
 
     @FXML
     public void StatClick(ActionEvent event) throws IOException {

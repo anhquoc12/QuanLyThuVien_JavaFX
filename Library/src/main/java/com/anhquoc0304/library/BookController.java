@@ -26,6 +26,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -40,7 +41,7 @@ import javafx.stage.Stage;
  * @author dell
  */
 public class BookController implements Initializable {
-
+    String items[] = {"Tên Sách", "Tên Tác Giả", "Năm Xuất Bản", "Danh Mục"};
     @FXML
     private TableView<Sach> tbBook;
     @FXML
@@ -65,12 +66,18 @@ public class BookController implements Initializable {
     private TextField txtDescription;
     @FXML
     private TextField txtPosition;
+    @FXML
+    private TextField txtSearch;
+    @FXML
+    private ComboBox<String> comSearch;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        comSearch.getItems().addAll(items);
+        comSearch.setValue("Tên Sách");
         ToggleGroup groupBook = new ToggleGroup();
         tgAdd.setToggleGroup(groupBook);
         tgDelete.setToggleGroup(groupBook);
@@ -82,6 +89,14 @@ public class BookController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(BookController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        this.txtSearch.textProperty().addListener(o -> {
+            try {
+                FillterDataView(tbBook, this.txtSearch.getText(), comSearch.getValue());
+            } catch (SQLException ex) {
+                Logger.getLogger(BookController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
     }
 
     @FXML
@@ -90,8 +105,7 @@ public class BookController implements Initializable {
         TableView<Sach> table = (TableView<Sach>) event.getSource();
         Sach s = table.getSelectionModel().getSelectedItem();
 //        
-        if (s != null) 
-        {
+        if (s != null) {
             txtID.setText(s.getMaSach());
             txtName.setText(s.getTenSach());
             txtTacGia.setText(s.getTacGia());
@@ -102,16 +116,16 @@ public class BookController implements Initializable {
             txtNoiXB.setText(s.getNoiXB());
         }
     }
-    
-    @FXML void SearchCLick(ActionEvent event) throws IOException
-    {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Search.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-    }
+
+//    @FXML
+//    public void getSachByName(String keyword) throws SQLException {
+//        LoadDataViewByName(tbBook, this.txtSearch.getText());
+//    }
+//
+//    @FXML
+//    public void SearchCLick(ActionEvent event) throws IOException, SQLException {
+//        LoadDataViewByName(tbBook, this.txtSearch.getText());
+//    }
 
     private void LoadTableView() {
         TableColumn colID = new TableColumn("Mã Sách");
@@ -145,4 +159,24 @@ public class BookController implements Initializable {
     private void LoadDataView(TableView table) throws SQLException {
         table.setItems(FXCollections.observableArrayList(new SachServices().SachList()));
     }
+
+    private void FillterDataView(TableView table, String keywords, String type) throws SQLException {
+        SachServices s = new SachServices();
+        if (type == items[0])
+            table.setItems(FXCollections.observableArrayList(s.GetBookByName(keywords)));
+        else if (type == items[1])
+            table.setItems(FXCollections.observableArrayList(s.GetBookByTacGia(keywords)));
+        else if (type == items[2])
+            table.setItems(FXCollections.observableArrayList(s.GetBookByNamXB(keywords)));
+        else
+           table.setItems(FXCollections.observableArrayList( s.GetBookByDanhMuc(keywords)));
+    }
+
+//    private void LoadDataView(TableView table) throws SQLException {
+//        table.setItems(FXCollections.observableArrayList(new SachServices().SachList()));
+//    }
+//    
+//    private void LoadDataView(TableView table) throws SQLException {
+//        table.setItems(FXCollections.observableArrayList(new SachServices().SachList()));
+//    }
 }
