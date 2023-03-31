@@ -4,6 +4,8 @@
  */
 package pojo;
 
+import java.util.Date;
+
 /**
  *
  * @author dell
@@ -15,23 +17,27 @@ public class Sach {
     private String theLoai;
     private int namXB;
     private String noiXB;
+    private Date ngayNhap;
     private String viTri;
     public enum StateOfBook {
-    KHA_DUNG, 
-    CO_NGUOI_DAT, 
-    DANG_CHO_MUON
+        KHA_DUNG, 
+        CO_NGUOI_DAT, 
+        DANG_DUOC_MUON
     }
     private StateOfBook trangThai;
+    private String motaSach;
 
-    public Sach(String maSach, String tenSach, String tacGia, String theLoai, int namXB, String noiXB, String viTri, StateOfBook trangThai) {
+    public Sach(String maSach, String tenSach, String tacGia, String theLoai, int namXB, String noiXB, Date ngayNhap, String viTri, StateOfBook trangThai, String motaSach) {
         this.maSach = maSach;
         this.tenSach = tenSach;
         this.tacGia = tacGia;
         this.theLoai = theLoai;
         this.namXB = namXB;
         this.noiXB = noiXB;
+        this.ngayNhap = ngayNhap;
         this.viTri = viTri;
         this.trangThai = trangThai;
+        this.motaSach = motaSach;
     }
 
     public Sach() {
@@ -99,6 +105,16 @@ public class Sach {
 
     public StateOfBook getTrangThai() {
         return trangThai;
+    }
+    
+    public String getMotaSach()
+    {
+        return motaSach;
+    }
+    
+    public void getMotaSach(String motaSach)
+    {
+        this.motaSach = motaSach;
     }
     
     @Override

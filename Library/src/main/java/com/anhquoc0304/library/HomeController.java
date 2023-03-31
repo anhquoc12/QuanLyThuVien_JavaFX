@@ -10,8 +10,11 @@ import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -26,27 +29,54 @@ public class HomeController implements Initializable {
 
     @FXML
     public void BookClick(ActionEvent event) throws IOException {
-        App.setRoot("Book");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Book.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+
+
     }
 
     @FXML
     public void ReaderClick(ActionEvent event) throws IOException {
-        App.setRoot("Reader");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Book.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
     public void RentBookClick(ActionEvent event) throws IOException {
-        App.setRoot("RentBook");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Book.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
     public void Click(ActionEvent event) throws IOException {
-        App.setRoot("Book");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Book.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
     public void StatClick(ActionEvent event) throws IOException {
-        App.setRoot("Book");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Book.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML

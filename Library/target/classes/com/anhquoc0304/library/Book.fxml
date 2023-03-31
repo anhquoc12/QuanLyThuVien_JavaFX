@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="696.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="736.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.anhquoc0304.library.BookController">
    <children>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="QUẢN LÝ SÁCH" />
       <HBox prefHeight="35.0" prefWidth="600.0">
@@ -21,25 +21,25 @@
       <HBox layoutX="10.0" layoutY="28.0" prefHeight="35.0" prefWidth="600.0">
          <children>
             <Label styleClass="field" text="Tên Sách" />
-            <TextField disable="true" styleClass="input" text="Kiểm Thử Phần Mềm" />
+            <TextField styleClass="input" text="Kiểm Thử Phần Mềm" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="28.0" prefHeight="35.0" prefWidth="600.0">
          <children>
             <Label styleClass="field" text="Tác Giả" />
-            <TextField disable="true" styleClass="input" text="Dương Hữu Thành" />
+            <TextField styleClass="input" text="Dương Hữu Thành" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="63.0" prefHeight="35.0" prefWidth="600.0">
          <children>
             <Label styleClass="field" text="Mô Tả Sách" />
-            <TextField disable="true" styleClass="input" text="Tổng quan về công việc kiểm thử cho kiểm thử viên" />
+            <TextField styleClass="input" text="Tổng quan về công việc kiểm thử cho kiểm thử viên" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="26.0" prefHeight="35.0" prefWidth="600.0">
          <children>
             <Label styleClass="field" text="Năm Xuất Bản" />
-            <TextField disable="true" styleClass="input" text="2014" />
+            <TextField styleClass="input" text="2014" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="61.0" prefHeight="35.0" prefWidth="600.0">
@@ -68,7 +68,7 @@
             <Button mnemonicParsing="false" text="Tra Cứu" />
          </children>
       </HBox>
-      <TableView prefHeight="200.0" prefWidth="200.0" />
+      <TableView fx:id="tbBook" onMouseClicked="#RowCLick" prefHeight="227.0" prefWidth="884.0" />
    </children>
    <stylesheets>
       <URL value="@../../../styles/reader.css" />
