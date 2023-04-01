@@ -17,7 +17,7 @@
       <HBox prefHeight="35.0" prefWidth="600.0">
          <children>
             <Label styleClass="field" text="Mã Sách" />
-            <TextField fx:id="txtID" disable="true" styleClass="input" />
+            <TextField fx:id="txtID" disable="true" prefHeight="23.0" prefWidth="570.0" styleClass="input" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="28.0" prefHeight="35.0" prefWidth="600.0">
@@ -50,6 +50,12 @@
             <TextField fx:id="txtNoiXB" disable="true" promptText="Nhập nơi xuất bản" styleClass="input" />
          </children>
       </HBox>
+      <HBox layoutX="34.0" layoutY="289.0" prefHeight="35.0" prefWidth="600.0">
+         <children>
+            <Label styleClass="field" text="Ngày Nhập" />
+            <HBox prefHeight="28.0" prefWidth="398.0" />
+         </children>
+      </HBox>
       <HBox layoutX="10.0" layoutY="96.0" prefHeight="35.0" prefWidth="600.0">
          <children>
             <Label styleClass="field" text="Danh Mục" />
@@ -71,8 +77,8 @@
       </HBox>
       <HBox layoutX="10.0" layoutY="237.0" prefHeight="35.0" prefWidth="600.0">
          <children>
-            <Button mnemonicParsing="false" text="Lưu Thông Tin" />
-            <ToggleButton fx:id="tgAdd" mnemonicParsing="false" text="Thêm" />
+            <Button mnemonicParsing="false" onAction="#SaveClick" text="Lưu Thông Tin" />
+            <ToggleButton fx:id="tgAdd" mnemonicParsing="false" onMouseClicked="#AddClick" text="Thêm" />
             <ToggleButton fx:id="tgEdit" mnemonicParsing="false" text="Sửa" />
             <ToggleButton fx:id="tgDelete" mnemonicParsing="false" text="Xóa" />
          </children>

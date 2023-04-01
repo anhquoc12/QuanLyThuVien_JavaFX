@@ -4,6 +4,7 @@
  */
 package pojo;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -101,6 +102,16 @@ public class Sach {
 
     public String getViTri() {
         return viTri;
+    }
+    
+    public void setNgayNhap(Date ngayNhap)
+    {
+        this.ngayNhap = ngayNhap;
+    }
+    
+    public Date getNgayNhap()
+    {
+        return this.ngayNhap;
     }
 
     public StateOfBook getTrangThai() {

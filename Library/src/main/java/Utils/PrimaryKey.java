@@ -9,5 +9,25 @@ package Utils;
  * @author dell
  */
 public class PrimaryKey {
+
+    public PrimaryKey() {
+    }
     
+    public String ID_4(String key, String lastkey)
+    {
+        
+        int num = Integer.parseInt(lastkey.substring(2, 6)) + 1;
+        return key + "0000".substring(0, 6 - 2 - Integer.toString(num).length()) + num;
+    }
+    
+    public String ID_8(String key, String lastkey)
+    {
+        
+        int num = Integer.parseInt(lastkey.substring(4, 12)) + 1;
+        return key + "00000000".substring(0, 12 - 4 - Integer.toString(num).length()) + num;
+    }
+    
+    public static void main(String[] args) {
+        System.out.print(new PrimaryKey().ID_8("CTPM", "CTPM00000099"));
+    }
 }
