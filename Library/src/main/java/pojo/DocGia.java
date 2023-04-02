@@ -19,7 +19,7 @@ public class DocGia {
         NU
     }
     private Date ngaySinh;
-    private enum Object
+    public enum Object
     {
         STUDENT,
         TEACHER,

@@ -14,7 +14,7 @@ public class PhieuMuon {
     private String maPhieuMuon;
     private String maDocGia;
     private Date ngayMuon;
-    private enum StateOfPM {
+    public enum StateOfPM {
         CHUA_TRA,
         DANG_DAT,
         DA_TRA

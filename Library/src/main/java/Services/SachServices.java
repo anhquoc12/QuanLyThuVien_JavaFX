@@ -252,7 +252,163 @@ public class SachServices {
                 return null;
         }
     }
-    
+    public List<Sach> GetBookByID(String keywords) throws SQLException
+    {
+        List<Sach> books = new ArrayList<>();
+        try (Connection conn = JdbcUtils.getConn()) {
+            String sql = "SELECT* FROM Sach";
+             if (keywords != null && !keywords.isEmpty())
+                sql += " WHERE maSach like concat('%', ?, '%')";
+            
+            PreparedStatement stm = conn.prepareCall(sql);
+            if (keywords != null && !keywords.isEmpty())
+                stm.setString(1, keywords);
+            ResultSet rs = stm.executeQuery();
+
+            while (rs.next()) {
+                String id = rs.getString("maSach");
+                String name = rs.getString("tenSach");
+                String tacgia = rs.getString("tacGia");
+                String danhmuc = rs.getString("theLoai");
+                int namXB = rs.getInt("namXB");
+                String noiXB = rs.getString("noiXB");
+                Date ngayNhap = rs.getDate("ngayNhap");
+                String position = rs.getString("viTri");
+                Sach.StateOfBook state = Sach.StateOfBook.valueOf(rs.getString("trangThai"));
+                String description = rs.getString("motaSach") == "" ? rs.getString("motaSach") : "Không có";
+
+                Sach s = new Sach(id, name, tacgia, danhmuc, namXB, noiXB, ngayNhap,
+                        position, state, description);
+                books.add(s);
+
+            }
+        }
+        return books;
+    }
+    public List<Sach> listDachKhaDung() throws SQLException {
+        List<Sach> books = new ArrayList<>();
+        try (Connection conn = JdbcUtils.getConn()) {
+            ResultSet rs = conn.createStatement().executeQuery("select * from sach where trangThai = 'KHA_DUNG'");
+
+            while (rs.next()) {
+                String id = rs.getString("maSach");
+                String name = rs.getString("tenSach");
+                String tacgia = rs.getString("tacGia");
+                String danhmuc = rs.getString("theLoai");
+                int namXB = rs.getInt("namXB");
+                String noiXB = rs.getString("noiXB");
+                Date ngayNhap = rs.getDate("ngayNhap");
+                String position = rs.getString("viTri");
+                Sach.StateOfBook state = Sach.StateOfBook.valueOf(rs.getString("trangThai"));
+                String description = rs.getString("motaSach") == "" ? rs.getString("motaSach") : "Không có";
+
+                Sach s = new Sach(id, name, tacgia, danhmuc, namXB, noiXB, ngayNhap,
+                        position, state, description);
+                books.add(s);
+
+            }
+        }
+        return books;
+    }
+    public List<Sach> listSachKhaDungByName(String keywords) throws SQLException
+    {
+        List<Sach> books = new ArrayList<>();
+        try (Connection conn = JdbcUtils.getConn()) {
+            String sql = "select * from sach where trangThai = 'KHA_DUNG'";
+             if (keywords != null && !keywords.isEmpty())
+                sql += " and tenSach like concat('%', ?, '%')";
+            
+            PreparedStatement stm = conn.prepareCall(sql);
+            if (keywords != null && !keywords.isEmpty())
+                stm.setString(1, keywords);
+            ResultSet rs = stm.executeQuery();
+
+            while (rs.next()) {
+                String id = rs.getString("maSach");
+                String name = rs.getString("tenSach");
+                String tacgia = rs.getString("tacGia");
+                String danhmuc = rs.getString("theLoai");
+                int namXB = rs.getInt("namXB");
+                String noiXB = rs.getString("noiXB");
+                Date ngayNhap = rs.getDate("ngayNhap");
+                String position = rs.getString("viTri");
+                Sach.StateOfBook state = Sach.StateOfBook.valueOf(rs.getString("trangThai"));
+                String description = rs.getString("motaSach") == "" ? rs.getString("motaSach") : "Không có";
+
+                Sach s = new Sach(id, name, tacgia, danhmuc, namXB, noiXB, ngayNhap,
+                        position, state, description);
+                books.add(s);
+
+            }
+        }
+        return books;
+    }
+    public List<Sach> listSachKhaDungByID(String keywords) throws SQLException
+    {
+        List<Sach> books = new ArrayList<>();
+        try (Connection conn = JdbcUtils.getConn()) {
+            String sql = "select * from sach where trangThai = 'KHA_DUNG'";
+             if (keywords != null && !keywords.isEmpty())
+                sql += " and maSach like concat('%', ?, '%')";
+            
+            PreparedStatement stm = conn.prepareCall(sql);
+            if (keywords != null && !keywords.isEmpty())
+                stm.setString(1, keywords);
+            ResultSet rs = stm.executeQuery();
+
+            while (rs.next()) {
+                String id = rs.getString("maSach");
+                String name = rs.getString("tenSach");
+                String tacgia = rs.getString("tacGia");
+                String danhmuc = rs.getString("theLoai");
+                int namXB = rs.getInt("namXB");
+                String noiXB = rs.getString("noiXB");
+                Date ngayNhap = rs.getDate("ngayNhap");
+                String position = rs.getString("viTri");
+                Sach.StateOfBook state = Sach.StateOfBook.valueOf(rs.getString("trangThai"));
+                String description = rs.getString("motaSach") == "" ? rs.getString("motaSach") : "Không có";
+
+                Sach s = new Sach(id, name, tacgia, danhmuc, namXB, noiXB, ngayNhap,
+                        position, state, description);
+                books.add(s);
+
+            }
+        }
+        return books;
+    }
+    public List<Sach> listSachKhaDungByTG(String keywords) throws SQLException
+    {
+        List<Sach> books = new ArrayList<>();
+        try (Connection conn = JdbcUtils.getConn()) {
+            String sql = "select * from sach where trangThai = 'KHA_DUNG'";
+             if (keywords != null && !keywords.isEmpty())
+                sql += " and tacGia like concat('%', ?, '%')";
+            
+            PreparedStatement stm = conn.prepareCall(sql);
+            if (keywords != null && !keywords.isEmpty())
+                stm.setString(1, keywords);
+            ResultSet rs = stm.executeQuery();
+
+            while (rs.next()) {
+                String id = rs.getString("maSach");
+                String name = rs.getString("tenSach");
+                String tacgia = rs.getString("tacGia");
+                String danhmuc = rs.getString("theLoai");
+                int namXB = rs.getInt("namXB");
+                String noiXB = rs.getString("noiXB");
+                Date ngayNhap = rs.getDate("ngayNhap");
+                String position = rs.getString("viTri");
+                Sach.StateOfBook state = Sach.StateOfBook.valueOf(rs.getString("trangThai"));
+                String description = rs.getString("motaSach") == "" ? rs.getString("motaSach") : "Không có";
+
+                Sach s = new Sach(id, name, tacgia, danhmuc, namXB, noiXB, ngayNhap,
+                        position, state, description);
+                books.add(s);
+
+            }
+        }
+        return books;
+    }
     public static void main(String[] args) throws SQLException {
         // new General().ConvertDateToLocalDate(new SachServices().FirstBook().getNgayNhap())
         
