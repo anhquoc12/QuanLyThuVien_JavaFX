@@ -11,10 +11,15 @@ import java.util.Date;
  * @author dell
  */
 public class PhieuMuon {
+    private static int dem = 0;
     private String maPhieuMuon;
     private String maDocGia;
     private Date ngayMuon;
-    private enum StateOfPM {
+    {
+        dem++;
+        this.maPhieuMuon = String.format("PM%d", dem);
+    }
+    public enum StateOfPM {
         CHUA_TRA,
         DANG_DAT,
         DA_TRA
@@ -30,7 +35,12 @@ public class PhieuMuon {
         this.ngayMuon = ngayMuon;
         this.trangThai = trangThai;
     }
-
+    public PhieuMuon(String maDocGiaString, Date ngayMuonDate, StateOfPM trangThai){
+        this.maDocGia = maDocGiaString;
+        this.ngayMuon = ngayMuonDate;
+        this.trangThai = trangThai;
+    }
+    
     public String getMaPhieuMuon() {
         return maPhieuMuon;
     }
@@ -39,9 +49,9 @@ public class PhieuMuon {
         return maDocGia;
     }
 
-    public Date getNgayMuon() {
-        return ngayMuon;
-    }
+//    public Date getNgayMuon() {
+//        return ngayMuon;
+//    }
 
     public StateOfPM getTrangThai() {
         return trangThai;
@@ -55,9 +65,9 @@ public class PhieuMuon {
         this.maDocGia = maDocGia;
     }
 
-    public void setNgayMuon(Date ngayMuon) {
-        this.ngayMuon = ngayMuon;
-    }
+//    public void setNgayMuon(Date ngayMuon) {
+//        this.ngayMuon = ngayMuon;
+//    }
 
     public void setTrangThai(StateOfPM trangThai) {
         this.trangThai = trangThai;
@@ -67,4 +77,23 @@ public class PhieuMuon {
     public String toString() {
         return this.maPhieuMuon;
     }
+
+    /**
+     * @return the ngayMuon
+     */
+    public Date getNgayMuon() {
+        return ngayMuon;
+    }
+
+    /**
+     * @param ngayMuon the ngayMuon to set
+     */
+    public void setNgayMuon(Date ngayMuon) {
+        this.ngayMuon = ngayMuon;
+    }
+
+    /**
+     * @return the ngayMuon
+     */
+    
 }

@@ -9,15 +9,24 @@ package pojo;
  * @author dell
  */
 public class ChiTietPhieuMuon {
+    private static int dem = 0;
     private String maCTPM;
     private String maPhieuMuon;
     private String maSach;
+    {
+        dem++;
+        this.maCTPM = String.format("CTPM%d", dem);
+    }
 
     public ChiTietPhieuMuon() {
     }
 
     public ChiTietPhieuMuon(String maCTPM, String maPhieuMuon, String maSach) {
         this.maCTPM = maCTPM;
+        this.maPhieuMuon = maPhieuMuon;
+        this.maSach = maSach;
+    }
+    public ChiTietPhieuMuon(String maPhieuMuon, String maSach) {
         this.maPhieuMuon = maPhieuMuon;
         this.maSach = maSach;
     }
