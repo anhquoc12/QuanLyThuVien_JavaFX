@@ -17,7 +17,6 @@ pojo\PhieuMuon.class
 conf\JdbcUtils.class
 pojo\ChiTietPhieuMuon.class
 pojo\Sach.class
-Services\PhieuMuonServices.class
 com\anhquoc0304\library\DetailRentBookController.class
 com\anhquoc0304\library\MuonSachController.class
 pojo\DocGia$Object.class

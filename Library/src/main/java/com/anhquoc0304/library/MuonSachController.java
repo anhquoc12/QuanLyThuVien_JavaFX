@@ -5,9 +5,14 @@
 package com.anhquoc0304.library;
 
 import Services.DocGiaServices;
+import Services.PhieuMuonServices;
 import Services.SachServices;
+import Utils.General;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -16,6 +21,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -23,7 +29,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import pojo.ChiTietPhieuMuon;
 import pojo.DocGia;
+import pojo.PhieuMuon;
 import pojo.Sach;
 
 /**
@@ -131,24 +139,16 @@ public class MuonSachController implements Initializable {
         TableColumn colName = new TableColumn("Tên Sách");
         TableColumn colAuthor = new TableColumn("Tác giả");
         TableColumn colType = new TableColumn("Thể Loại");
-//        TableColumn colYear = new TableColumn(" Năm Xuất Bản");
-//        TableColumn colPlace = new TableColumn("Nơi Xuất Bản");
-//        TableColumn colDate = new TableColumn("Ngày Nhập");
         TableColumn colPosition = new TableColumn("Vi Trí Sách");
         TableColumn colStateofBook = new TableColumn("Trạng Thái");
-//        TableColumn colDescription = new TableColumn("Mô Tả Sách");
-
-        // Đổ dữ liệu
+        
         colID.setCellValueFactory(new PropertyValueFactory("maSach"));
         colName.setCellValueFactory(new PropertyValueFactory("tenSach"));
         colAuthor.setCellValueFactory(new PropertyValueFactory("tacGia"));
         colType.setCellValueFactory(new PropertyValueFactory("theLoai"));
-//        colYear.setCellValueFactory(new PropertyValueFactory("namXB"));
-//        colPlace.setCellValueFactory(new PropertyValueFactory("noiXB"));
-//        colDate.setCellValueFactory(new PropertyValueFactory("ngayNhap"));
+        
         colPosition.setCellValueFactory(new PropertyValueFactory("viTri"));
         colStateofBook.setCellValueFactory(new PropertyValueFactory("trangThai"));
-//        colDescription.setCellValueFactory(new PropertyValueFactory("motaSach"));
 
         this.tbSach.getColumns().addAll(colID, colName, colAuthor, colType,
           colPosition, colStateofBook);
@@ -189,25 +189,39 @@ public class MuonSachController implements Initializable {
         TableColumn colName = new TableColumn("Tên Sách");
         TableColumn colAuthor = new TableColumn("Tác giả");
         TableColumn colType = new TableColumn("Thể Loại");
-//        TableColumn colYear = new TableColumn(" Năm Xuất Bản");
-//        TableColumn colPlace = new TableColumn("Nơi Xuất Bản");
-//        TableColumn colDate = new TableColumn("Ngày Nhập");
-        TableColumn colPosition = new TableColumn("Vi Trí Sách");
-        TableColumn colStateofBook = new TableColumn("Trạng Thái");
-//        TableColumn colDescription = new TableColumn("Mô Tả Sách");
-
-        // Đổ dữ liệu
+        
         colID.setCellValueFactory(new PropertyValueFactory("maSach"));
         colName.setCellValueFactory(new PropertyValueFactory("tenSach"));
         colAuthor.setCellValueFactory(new PropertyValueFactory("tacGia"));
         colType.setCellValueFactory(new PropertyValueFactory("theLoai"));
-//        colYear.setCellValueFactory(new PropertyValueFactory("namXB"));
-//        colPlace.setCellValueFactory(new PropertyValueFactory("noiXB"));
-//        colDate.setCellValueFactory(new PropertyValueFactory("ngayNhap"));
-//        colPosition.setCellValueFactory(new PropertyValueFactory("viTri"));
-//        colStateofBook.setCellValueFactory(new PropertyValueFactory("trangThai"));
-//        colDescription.setCellValueFactory(new PropertyValueFactory("motaSach"));
 
         this.tbSachMuon.getColumns().addAll(colID, colName, colAuthor, colType);
+    }
+    public void lapPhieuHandler(ActionEvent event){
+        LocalDate date = LocalDate.now();
+        int d, m, y;
+        d = date.getDayOfMonth();
+        m = date.getMonthValue() - 1;
+        y = date.getYear() - 1990;
+        Date ngayMuon = new Date(y, m, d);
+        General gn = new General();
+        PhieuMuonServices sv = new PhieuMuonServices();
+        List<Sach> listSachs = new ArrayList<>();
+        for(Sach s : tbSachMuon.getItems()){
+            listSachs.add(s);
+        }
+        PhieuMuon pm = new PhieuMuon(lblMaDocGia.getText(),ngayMuon, PhieuMuon.StateOfPM.DANG_DAT);
+        List<ChiTietPhieuMuon> listCTPMs = new ArrayList<>();
+        for(int i = 0; i < listSachs.size(); i++){
+            ChiTietPhieuMuon ctpm = new ChiTietPhieuMuon(pm.getMaPhieuMuon(), listSachs.get(i).getMaSach());
+            listCTPMs.add(ctpm);
+        }
+        try{
+            sv.luuPhieuMuon(pm, listCTPMs);
+            gn.MessageBox("Lưu phiếu mượn Thành Công!!!", "Successfull", Alert.AlertType.INFORMATION);
+        }
+        catch(SQLException ex){
+            gn.MessageBox("Lưu phiếu mượn Thất Bại!!!", "Fall", Alert.AlertType.INFORMATION);
+        }
     }
 }
