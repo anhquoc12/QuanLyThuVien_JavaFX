@@ -37,7 +37,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import Utils.PrimaryKey;
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.ZoneId;
+import java.sql.Date;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableRow;
 import pojo.Sach.StateOfBook;
@@ -99,7 +100,6 @@ public class BookController implements Initializable {
             txtPosition.setText(s.getViTri());
             txtNoiXB.setText(s.getNoiXB());
             datenhap.setValue(new General().ConvertDateToLocalDate(s.getNgayNhap()));
-            System.out.print(datenhap.getValue());
 
         } catch (SQLException ex) {
             Logger.getLogger(BookController.class.getName()).log(Level.SEVERE, null, ex);
@@ -132,8 +132,7 @@ public class BookController implements Initializable {
     public void RowCLick(MouseEvent event) {
 
         TableView<Sach> table = (TableView<Sach>) event.getSource();
-        Sach s = table.getSelectionModel().getSelectedItem();
-//        
+        Sach s = table.getSelectionModel().getSelectedItem();       
         if (s != null) {
             txtID.setText(s.getMaSach());
             txtName.setText(s.getTenSach());
@@ -152,46 +151,21 @@ public class BookController implements Initializable {
         PrimaryKey key = new PrimaryKey();
         txtID.setText(key.ID_4("SA", new SachServices().LastKey_Book()));
         datenhap.setValue(LocalDate.now());
-        txtNoiXB.disableProperty();
-        System.out.println('-' * 100000);
     }
 
     @FXML
     private void SaveClick(ActionEvent event) throws SQLException {
-        
-        new General().MessageBox("Succcess", "Thêm thành công", AlertType.INFORMATION);
+        SachServices service = new SachServices();
         if (tgAdd.isSelected()) {
-            String id = txtID.getText();
-            String name = txtName.getText();
-            String tacgia = txtTacGia.getText();
-            String theloai = txtTheLoai.getText();
-            int namxb = Integer.parseInt(txtNamXB.getText());
-            String noixb = txtNoiXB.getText();
-            String vitri = txtPosition.getText();
-            StateOfBook trangThai = Sach.StateOfBook.KHA_DUNG;
-            Date ngayNhap = new Date();
-            ngayNhap = new General().ConvertFromDatePicker(datenhap);
-//            try
-//            {
-//                ngayNhap = new General().ConvertFromDatePicker(datenhap);
-//                System.out.println("SuccessAll" + datenhap.getValue().toString());
-//            }
-//            catch (Exception ex)
-//                    {
-//                        System.out.println("Failed" + datenhap.getValue().toString());
-//                        ex.printStackTrace();
-//                    }
-            String mota = txtDescription.getText() == null ? "" : txtDescription.getText();
-            Sach s = new Sach(id, name, tacgia, theloai, namxb, noixb, ngayNhap, vitri, trangThai, mota);
-            SachServices service = new SachServices();
-            String result = service.AddBook(s);
-            System.out.println(result);
-//            if (result) {
-//                System.out.println("susccess");
-//            } else {
-//                System.out.println("failed");
-//            }
+            AddBook();
+        } else if (tgDelete.isSelected()) {
+            DeleteBook();
+        } else if (tgEdit.isSelected()) {
+            EditBook();
+        } else {
+            new General().MessageBox("Thông Báo", "Bạn chưa chọn bất kỳ hành động nào", AlertType.WARNING).showAndWait();
         }
+        LoadDataView(tbBook);
     }
 
     private void LoadTableView() {
@@ -238,5 +212,60 @@ public class BookController implements Initializable {
         } else {
             table.setItems(FXCollections.observableArrayList(s.GetBookByDanhMuc(keywords)));
         }
+    }
+
+    private void AddBook() throws SQLException {
+        String id = txtID.getText();
+        String name = txtName.getText();
+        String tacgia = txtTacGia.getText();
+        String theloai = txtTheLoai.getText();
+        int namxb = Integer.parseInt(txtNamXB.getText());
+        String noixb = txtNoiXB.getText();
+        String vitri = txtPosition.getText();
+        StateOfBook trangThai = Sach.StateOfBook.KHA_DUNG;
+        int day = datenhap.getValue().getDayOfMonth();
+        int month = datenhap.getValue().getMonthValue() - 1;
+        int year = datenhap.getValue().getYear() - 1990;
+        Date ngayNhap = new Date(year, month, day);
+        String mota = txtDescription.getText();
+        Sach s = new Sach(id, name, tacgia, theloai, namxb, noixb, ngayNhap, vitri, trangThai, mota);
+
+        if ( new SachServices().AddBook(s)) {
+            new General().MessageBox("Thông Báo", "Thêm Thành Công", AlertType.INFORMATION).showAndWait();
+        } else {
+            new General().MessageBox("Thông Báo", "Thêm Thất Bại", AlertType.ERROR).showAndWait();
+        }
+    }
+    
+    private void DeleteBook() throws SQLException
+    {
+        if (new SachServices().DeleteBook(txtID.getText())) {
+                new General().MessageBox("Thông Báo", "Xóa Thành Công", AlertType.INFORMATION).showAndWait();
+            } else {
+                new General().MessageBox("Thông Báo", "Xóa Thất Bại", AlertType.ERROR).showAndWait();
+            }
+    }
+    
+    private void EditBook() throws SQLException
+    {
+        String id = txtID.getText();
+            String name = txtName.getText();
+            String tacgia = txtTacGia.getText();
+            String theloai = txtTheLoai.getText();
+            int namxb = Integer.parseInt(txtNamXB.getText());
+            String noixb = txtNoiXB.getText();
+            String vitri = txtPosition.getText();
+            StateOfBook trangThai = Sach.StateOfBook.KHA_DUNG;
+            int day = datenhap.getValue().getDayOfMonth();
+            int month = datenhap.getValue().getMonthValue() - 1;
+            int year = datenhap.getValue().getYear() - 1990;
+            Date ngayNhap = new Date(year, month, day);
+            String mota = txtDescription.getText();
+            Sach s = new Sach(id, name, tacgia, theloai, namxb, noixb, ngayNhap, vitri, trangThai, mota);
+            if (new Services.SachServices().EditBook(s)) {
+                new General().MessageBox("Thông Báo", "Sửa Thành Công", AlertType.INFORMATION).showAndWait();
+            } else {
+                new General().MessageBox("Thông Báo", "Sửa Thất Bại", AlertType.ERROR).showAndWait();
+            }
     }
 }
