@@ -41,7 +41,7 @@ public class HomeController implements Initializable {
 
     @FXML
     public void ReaderClick(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Book.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Reader.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = new Stage();

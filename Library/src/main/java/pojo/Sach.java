@@ -5,7 +5,7 @@
 package pojo;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
